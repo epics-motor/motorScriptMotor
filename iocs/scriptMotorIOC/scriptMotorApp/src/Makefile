@@ -21,13 +21,16 @@ scriptMotor_DBD += base.dbd
 # Include dbd files from all support applications:
 #ifdef ASYN
 scriptMotor_DBD += asyn.dbd
+scriptMotor_DBD += drvAsynIPPort.dbd
 #endif
+scriptMotor_DBD += luaSupport.dbd
 scriptMotor_DBD += motorSupport.dbd
-scriptMotor_DBD += devScriptMotor.dbd
+scriptMotor_DBD += ScriptMotorDriver.dbd
 
 # Add all the support libraries needed by this IOC
-scriptMotor_LIBS += scriptMotor
+scriptMotor_LIBS += ScriptMotor
 scriptMotor_LIBS += motor
+scriptMotor_LIBS += lua
 #ifdef ASYN
 scriptMotor_LIBS += asyn
 #endif
