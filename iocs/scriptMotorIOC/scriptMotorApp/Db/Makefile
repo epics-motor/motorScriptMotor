@@ -12,6 +12,14 @@ include $(TOP)/configure/CONFIG
 # databases, templates, substitutions like this
 #DB += xxx.db
 
+ifdef MOTOR_SCRIPTMOTOR
+### this module was built outside motor
+DB_INSTALLS += $(MOTOR_SCRIPTMOTOR)/db/ScriptMotorReload.db
+else
+### this module was built inside motor/modules
+DB_INSTALLS += $(MOTOR)/db/ScriptMotorReload.db
+endif
+
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add
 # <anyname>_template = <templatename>
