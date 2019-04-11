@@ -1,0 +1,42 @@
+TOP=../..
+
+include $(TOP)/configure/CONFIG
+#----------------------------------------
+#  ADD MACRO DEFINITIONS AFTER THIS LINE
+#=============================
+
+#=============================
+# Build the IOC application
+
+PROD_IOC = scriptMotor
+# scriptMotor.dbd will be created and installed
+DBD += scriptMotor.dbd
+
+# scriptMotor.dbd will be made up from these files:
+scriptMotor_DBD += base.dbd
+
+# Include dbd files from all support applications:
+#scriptMotor_DBD += xxx.dbd
+
+# Add all the support libraries needed by this IOC
+#scriptMotor_LIBS += xxx
+
+# scriptMotor_registerRecordDeviceDriver.cpp derives from scriptMotor.dbd
+scriptMotor_SRCS += scriptMotor_registerRecordDeviceDriver.cpp
+
+# Build the main IOC entry point on workstation OSs.
+scriptMotor_SRCS_DEFAULT += scriptMotorMain.cpp
+scriptMotor_SRCS_vxWorks += -nil-
+
+# Add support from base/src/vxWorks if needed
+#scriptMotor_OBJS_vxWorks += $(EPICS_BASE_BIN)/vxComLibrary
+
+# Finally link to the EPICS Base libraries
+scriptMotor_LIBS += $(EPICS_BASE_IOC_LIBS)
+
+#===========================
+
+include $(TOP)/configure/RULES
+#----------------------------------------
+#  ADD RULES AFTER THIS LINE
+
