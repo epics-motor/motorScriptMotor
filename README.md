@@ -1,6 +1,4 @@
 # motorScriptMotor
-EPICS motor drivers for Lua ScriptMotor 
-# motorScriptMotor
 EPICS motor drivers for Lua ScriptMotor.  Requires the EPICS [lua](https://github.com/epics-modules/lua) module.
 
 motorScriptMotor is a submodule of [motor](https://github.com/epics-modules/motor).  When motorScriptMotor is built in the ``motor/modules`` directory, no manual configuration is needed.
