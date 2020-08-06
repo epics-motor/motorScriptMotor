@@ -8,7 +8,8 @@ include $(TOP)/configure/CONFIG
 
 #==================================================
 # Build an IOC support library
-LIBRARY_IOC  = ScriptMotor
+LIBRARY_IOC_DEFAULT  = ScriptMotor
+LIBRARY_IOC_RTEMS = -nil-
 
 # motorRecord.h will be created from motorRecord.dbd
 # install devMotorSoft.dbd into <top>/dbd
