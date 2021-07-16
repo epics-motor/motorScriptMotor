@@ -217,7 +217,7 @@ ScriptMotorAxis::ScriptMotorAxis(ScriptMotorController *pC, int axisNo, const ch
 
 void ScriptMotorAxis::initState(const char* script_file)
 {
-  this->state = luaL_newstate();
+  this->state = luaCreateState();
   int status = luaLoadScript(this->state, script_file);
   
   if (status) 
