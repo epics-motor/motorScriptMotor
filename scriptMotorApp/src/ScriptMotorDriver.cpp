@@ -220,7 +220,13 @@ void ScriptMotorAxis::initState(const char* script_file)
   this->state = luaL_newstate();
   int status = luaLoadScript(this->state, script_file);
   
-  if (status) { printf("Error compiling script file: %s\n", script_file); }
+  if (status) 
+  { 
+    printf("Error compiling script file: %s\n", script_file);
+   
+    const char* err = lua_tostring(this->state, -1);    
+    printf("\t%s\n", err);
+  }
 
   lua_pushstring(this->state, (const char*) this->pC_->portName);
   lua_setglobal(this->state, "DRIVER");
