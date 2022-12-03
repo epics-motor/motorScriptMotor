@@ -88,6 +88,15 @@ function move(position, relative, minVel, maxVel, accel)
 			api = 2 }
 	
 		send(request)
+
+		local request = {
+                        jsonrpc = "2.0",
+                        method = "com.attocube.amc.control.setControlMove",
+                        params = { AXIS ,true },
+                        id = AXIS,
+                        api = 2 }
+		send(request)
+
 	end
 end
 
@@ -105,8 +114,8 @@ end
 function stop(acceleration)
 	local request = { 
 		jsonrpc = "2.0",
-		method = "com.attocube.amc.move.setControlContinuousBkwd",
-		params = { AXIS, 0},
+		method = "com.attocube.amc.control.setControlMove",
+		params = { AXIS, false},
 		id = AXIS,
 		api = 2 }
 
@@ -141,8 +150,27 @@ function poll()
 	local high_lim = 0
 
 	if (status == "moving") then moving = 1 end
-	if (status == "backward limit reached") then low_lim = 1 end
-	if (status == "forward limit reached") then high_lim = 1 end
+	if (status == "backward limit reached") then 
+		low_lim = 1 
+		local request = {
+                	jsonrpc = "2.0",
+                	method = "com.attocube.amc.control.setControlMove",
+                	params = { AXIS, false},
+                	id = AXIS,
+                	api = 2 }
+        	send(request)
+	end
+	if (status == "forward limit reached") then 
+		high_lim = 1 
+	
+		local request = {
+                	jsonrpc = "2.0",
+                	method = "com.attocube.amc.control.setControlMove",
+                	params = { AXIS, false},
+                	id = AXIS,
+                	api = 2 }
+        	send(request)
+	end
 	
 	asyn.setIntegerParam(DRIVER, AXIS, "MOTOR_STATUS_DONE", moving ~ 1)
 	asyn.setIntegerParam(DRIVER, AXIS, "MOTOR_STATUS_MOVING", moving)
@@ -150,6 +178,16 @@ function poll()
 	asyn.setIntegerParam(DRIVER, AXIS, "MOTOR_STATUS_LOW_LIMIT", low_lim)
 	asyn.setIntegerParam(DRIVER, AXIS, "MOTOR_STATUS_HIGH_LIMIT", high_lim)
 	
+	if (status == "in target range") then
+        	local request = {
+                        jsonrpc = "2.0",
+                        method = "com.attocube.amc.control.setControlMove",
+                        params = { AXIS, false},
+                        id = AXIS,
+                        api = 2 }
+		send(request)
+	end
+
 			
 	return (moving == 1)
 end
