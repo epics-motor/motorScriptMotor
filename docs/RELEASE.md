@@ -1,5 +1,25 @@
 # motorScriptMotor Releases
 
+## __R1-2 (2023-04-13)__
+R1-2 is a release based on the master branch.
+
+### Changes since R1-1
+
+#### New features
+* Pull request [#1](https://github.com/epics-motor/motorScriptMotor/pull/1): [Keenan Lang](https://github.com/keenanlang) added Attocube AMC scripts and example
+
+#### Modifications to existing features
+* Pull request [#3](https://github.com/epics-motor/motorScriptMotor/pull/3): [Oksana Ivashkevych](https://github.com/oksanagit) and [Dave Cyl](https://github.com/davecyl) improved the Attocube AMC support
+* Commit [37f476c](https://github.com/epics-motor/motorScriptMotor/commit/37f476c636554e1ff117b15793c129a30d1687a6): SUPPORT has been removed from the RELEASE file; use RELEASE.local to define it instead.
+
+#### Bug fixes
+* Commit [2e4080a](https://github.com/epics-motor/motorScriptMotor/commit/2e4080a31848ef924cc700ecd2e452f9178ae56f): Display error details on load failure
+* Commit [6c82209](https://github.com/epics-motor/motorScriptMotor/commit/6c822097f6633c7cb0c1483e52a0f28ce08de3d4): Avoid unsupported RTEMS builds
+
+#### Continuous integration
+* Added ci-scripts (v3.0.1)
+* Configured to use Github Actions for CI
+
 ## __R1-1 (2020-05-12)__
 R1-1 is a release based on the master branch.  
 
